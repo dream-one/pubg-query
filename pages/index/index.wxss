@@ -1,0 +1,79 @@
+.content {
+  width: 750rpx;
+  height: 160rpx;
+  background-color: #f2a900;
+}
+
+.idInput {
+  border: 2rpx solid sandybrown;
+  width: 530rpx;
+  padding: 5rpx;
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 15rpx;
+  padding-left: 55rpx;
+  font-size: 26rpx;
+  color: #888;
+}
+
+.title {
+  color: #fff;
+  font-size: 24rpx;
+  margin-left: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.lishijilu {
+  background-color: #fff;
+  margin: 15rpx 15rpx;
+  font-size: 24rpx;
+  padding: 8rpx;
+}
+
+.plays {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  width: 750rpx;
+  height: 150rpx;
+  margin: 30rpx 0 0 0;
+  font-size: 28rpx;
+  border-bottom: 2rpx #f2a900 solid;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+.plays .right {
+  color: #888;
+}
+
+.neirong {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+  flex-wrap: wrap;
+  border-top: 2rpx #f2a900 solid;
+  border-left: 2rpx #f2a900 solid;
+}
+
+.neirongItem {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 2rpx #f2a900 solid;
+  border-right: 2rpx #f2a900 solid;
+  padding: 8rpx;
+  font-size: 28rpx;
+  color: #888;
+  width: 33.3333%;
+  height: 135rpx;
+}
+
+.neirong text {
+  font-weight: bold;
+  font-size: 32rpx;
+  color: black;
+}

@@ -1,0 +1,63 @@
+<view>
+  <view class="content">
+    <form bindsubmit="search">
+      <input class="idInput" value="{{searchValue}}" name="id" placeholder="请输入游戏名"></input>
+      <button size="mini" form-type="submit">查询</button>
+    </form>
+    <view class="title">历史记录：</view>
+    <view>
+      <block wx:for="{{history}}" wx:key="*this">
+        <text data-historyValue="{{item}}" bindtap="historySearch" class="lishijilu">{{item}}</text>
+      </block>
+    </view>
+  </view>
+
+  <view class="plays" wx:if="{{player}}">
+    <view class="left">
+      <view>玩家姓名：ZHUANGJUN</view>
+    </view>
+    <view class="right">查看更多数据 ></view>
+  </view>
+  <view>
+    <picker bindchange="changMode" range-key="name" range="{{gameMode}}" value="{{index}}" mode="selector">当前模式：{{gameMode[index].name}}
+    </picker>
+  </view>
+  <view class="neirong" wx:if="{{playLife}}">
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].assists}}</text>助攻</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].kills}}</text>击杀数</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].wins}}</text>获胜场次</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].roundMostKills}}</text>单场最高击杀</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].headshotKills}}</text>爆头击杀</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].dBNOs}}</text>击倒数</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].heals}}</text>治疗量</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].mostSurvivalTime}}</text>单场最长存活时间</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].roadKills}}</text>开车撞死数量</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].rideDistance}}</text>车辆行驶总里程</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].swimDistance}}</text>游泳总里程</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].revives}}</text>复活队友次数</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].teamKills}}</text>队友误杀</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].timeSurvived.toFixed(2)/60}}</text>总存活时间</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].top10s}}</text>前十次数</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].roundsPlayed}}</text>参加比赛总次数</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].vehicleDestroys}}</text>销毁车辆</view>
+    <view class="neirongItem">
+      <text>{{playLife[gameMode[index].enname].suicides}}</text>自杀次数</view>
+  </view>
+</view>
