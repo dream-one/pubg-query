@@ -15,7 +15,7 @@
       },
       {
         "pagePath": "pages/message/message",
-        "text": "消息",
+        "text": "锦标赛",
         "iconPath": "./icons/message.png",
         "selectedIconPath": "./icons/message-active.png"
       },

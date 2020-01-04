@@ -1,2 +1,8 @@
-<!--pages/profile/profile.wxml-->
-<text>pages/profile/profile.wxml</text>
+<view class="container">
+  <view class="content">
+    <view class="touxiang">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <open-data type="userNickName" class="userName"></open-data>
+  </view>
+</view>

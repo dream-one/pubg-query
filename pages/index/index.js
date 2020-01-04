@@ -11,35 +11,50 @@ Page({
   data: {
     history: [], //历史记录
     searchValue: '',
+    kda: 0,
     player: null,
     playLife: null, //玩家寿命状态
     gameMode: [{
-      name: '单人-TPP',
+      name: '单人-第三人称',
       enname: 'solo'
     }, {
-      name: '单人-FPP',
+      name: '单人-第一人称',
       enname: 'solo - fpp'
     }, {
-      name: '双人-TPP',
+      name: '双人-第三人称',
       enname: 'duo',
     }, {
-      name: '双人-FPP',
+      name: '双人-第一人称',
       enname: 'duo-fpp'
     }, {
-      name: '四人-TPP',
+      name: '四人-第三人称',
       enname: 'squad'
     }, {
-      name: '四人-FPP',
+      name: '四人-第一人称',
       enname: 'squad-fpp'
     }],
     index: 0
   },
+  //更换游戏模式
   changMode(e) {
-    console.log(e)
+    let mode = this.data.gameMode[e.detail.value].enname
+    let playLife = this.data.playLife
+    let kda = this.countKD(playLife[mode].kills, playLife[mode].roundsPlayed - playLife[mode].wins)
     this.setData({
-      index: e.detail.value
+      index: e.detail.value,
+      kda
     })
-    console.log(this.data.gameMode[e.detail.value])
+  },
+  //计算KD
+  //kills 击杀数
+  //plays 死亡数
+  countKD(kills, plays) {
+    let num = kills / plays
+    if (num) {
+      return num.toFixed(2)
+    } else {
+      return 0
+    }
   },
   search(e) {
     //点击查询按钮
@@ -70,19 +85,34 @@ Page({
     wx.showLoading({
       title: '查找中',
     })
+    //请求玩家
     rquest(`/pc-as/players?filter[playerNames]=${value}`).then(res => {
       wx.hideLoading()
+      console.log(res)
       if (res.statusCode !== 200) {
         return wx.showToast({
           title: '用户名错误',
           icon: 'none'
         })
       }
-      console.log(res)
+      //请求数据
       rquest(`/pc-as/players/${res.data.data[0].id}/seasons/lifetime`).then(res => {
-        console.log(res)
+        let playLife = res.data.data.attributes.gameModeStats
+        //处理数据，小数点保留1位
+        for (let i in playLife) {
+          //单场存活时间
+          playLife[i].mostSurvivalTime = (playLife[i].mostSurvivalTime / 60).toFixed(1)
+          //总存活时间
+          playLife[i].timeSurvived = (playLife[i].timeSurvived / 60).toFixed(1)
+          //开车里程
+          playLife[i].rideDistance = (playLife[i].rideDistance / 1000).toFixed(1)
+          //游泳里程
+          playLife[i].swimDistance = (playLife[i].swimDistance / 1000).toFixed(1)
+        }
+        let kda = this.countKD(playLife['solo'].kills, playLife['solo'].roundsPlayed - playLife['solo'].wins)
         that.setData({
-          playLife: res.data.data.attributes.gameModeStats
+          playLife,
+          kda
         })
       })
       that.setData({
@@ -90,6 +120,7 @@ Page({
       })
       app.globalData.player = res.data.data[0]
     }).catch(err => {
+      console.log(err)
       wx.showToast({
         title: '网速太慢，再试试吧o(╥﹏╥)o',
         icon: 'none'
@@ -97,7 +128,6 @@ Page({
     })
   },
   historySearch(e) { //历史记录搜索
-
     this.setData({
       searchValue: e.currentTarget.dataset.historyvalue
     })

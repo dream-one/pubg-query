@@ -23,6 +23,10 @@
   margin-bottom: 10rpx;
 }
 
+.history {
+  height: 80rpx;
+}
+
 .lishijilu {
   background-color: #fff;
   margin: 15rpx 15rpx;
@@ -76,4 +80,40 @@
   font-weight: bold;
   font-size: 32rpx;
   color: black;
+}
+
+.pick {
+  background-color: #fff;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 26rpx;
+  padding-left: 20rpx;
+}
+
+.kda {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #fff;
+  border-top: 2rpx #f2a900 solid;
+  align-items: center;
+  font-size: 36rpx;
+  height: 160rpx;
+  justify-content: center;
+  color: #888;
+}
+
+.kda text {
+  font-weight: bold;
+  font-size: 44rpx;
+  color: black;
+  margin: 15rpx 0;
+}
+
+.image {
+  height: 35rpx;
+  width: 35rpx;
+  position: absolute;
+  top: 15rpx;
+  left: 5rpx;
 }

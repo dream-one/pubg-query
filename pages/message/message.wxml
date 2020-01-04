@@ -1,2 +1,12 @@
-<!--pages/message/message.wxml-->
-<text>pages/message/message.wxml</text>
+<view class="header">
+  <view class="left">名称</view>
+  <view class="time">更新时间</view>
+</view>
+<view class="list">
+  <block wx:for="{{dataList}}">
+    <view class="item">
+      <view class="left">{{item.id}}</view>
+      <view class="time">{{item.attributes.createdAt}}</view>
+    </view>
+  </block>
+</view>

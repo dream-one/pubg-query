@@ -1,1 +1,22 @@
-/* pages/message/message.wxss */
+.header{
+  display: flex;
+  color: orange;
+  padding: 10rpx;
+}
+page{
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.item{
+  display: flex;
+  border-bottom: 1rpx solid #8f8f40;
+  padding: 10rpx;
+  font-size: 24rpx;
+  
+}
+.left{
+  width: 40%;
+}
+.time{
+  flex: 1;
+}
